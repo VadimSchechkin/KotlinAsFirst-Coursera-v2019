@@ -64,6 +64,9 @@ fun main() {
 
     val len = trackLength(3.0, 0.0, 0.0, 4.0)
     println("$len")
+
+    val num = thirdDigit(3801)
+    println("$num")
 }
 
 /**
@@ -82,7 +85,7 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours * 60 * 60 + min
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
 fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
-    return (sagenes * 48.0 + arshins * 16.0 + vershoks) * 4.445 / 100.0
+    return (sagenes * 48.0 + arshins * 16.0 + vershoks) * 4.445 / 100
 }
 
 /**
@@ -112,7 +115,10 @@ fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt((
  * Пользователь задает целое число, большее 100 (например, 3801).
  * Определить третью цифру справа в этом числе (в данном случае 8).
  */
-fun thirdDigit(number: Int): Int = TODO()
+fun thirdDigit(number: Int): Int {
+    val str: String = number.toString()
+    return str[str.length - 3].toString().toInt()
+}
 
 /**
  * Простая
