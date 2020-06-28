@@ -2,6 +2,7 @@
 
 package lesson1.task1
 
+import java.math.*
 import kotlin.math.*
 
 /**
@@ -51,6 +52,18 @@ fun quadraticRootProduct(a: Double, b: Double, c: Double): Double {
 fun main() {
     val x1x2 = quadraticRootProduct(1.0, 13.0, 42.0)
     println("Root product: $x1x2")
+
+    val sec = seconds(8, 20, 35)
+    println("Time since the beginning of the day - $sec")
+
+    val met = lengthInMeters(8, 2, 11)
+    println("$met")
+
+    val rad = angleInRadian(36, 14, 35)
+    println("$rad")
+
+    val len = trackLength(3.0, 0.0, 0.0, 4.0)
+    println("$len")
 }
 
 /**
@@ -59,7 +72,7 @@ fun main() {
  * Пользователь задает время в часах, минутах и секундах, например, 8:20:35.
  * Рассчитать время в секундах, прошедшее с начала суток (30035 в данном случае).
  */
-fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
+fun seconds(hours: Int, minutes: Int, seconds: Int): Int = hours * 60 * 60 + minutes * 60 + seconds
 
 /**
  * Тривиальная
@@ -68,7 +81,9 @@ fun seconds(hours: Int, minutes: Int, seconds: Int): Int = TODO()
  * Определить длину того же отрезка в метрах (в данном случае 18.98).
  * 1 сажень = 3 аршина = 48 вершков, 1 вершок = 4.445 см.
  */
-fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
+fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double {
+    return (sagenes * 48.0 + arshins * 16.0 + vershoks) * 4.445 / 100.0
+}
 
 /**
  * Тривиальная
@@ -76,7 +91,12 @@ fun lengthInMeters(sagenes: Int, arshins: Int, vershoks: Int): Double = TODO()
  * Пользователь задает угол в градусах, минутах и секундах (например, 36 градусов 14 минут 35 секунд).
  * Вывести значение того же угла в радианах (например, 0.63256).
  */
-fun angleInRadian(deg: Int, min: Int, sec: Int): Double = TODO()
+fun angleInRadian(deg: Int, min: Int, sec: Int): Double {
+    val minInDeg: Double = (min / 60.0).toBigDecimal().setScale(5, RoundingMode.UP).toDouble()
+    val secInDeg: Double = (sec / 3600.0).toBigDecimal().setScale(5, RoundingMode.UP).toDouble()
+    val result: Double = (deg + minInDeg + secInDeg) * PI / 180
+    return (result).toBigDecimal().setScale(5, RoundingMode.UP).toDouble()
+}
 
 /**
  * Тривиальная
@@ -84,7 +104,7 @@ fun angleInRadian(deg: Int, min: Int, sec: Int): Double = TODO()
  * Найти длину отрезка, соединяющего точки на плоскости с координатами (x1, y1) и (x2, y2).
  * Например, расстояние между (3, 0) и (0, 4) равно 5
  */
-fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = TODO()
+fun trackLength(x1: Double, y1: Double, x2: Double, y2: Double): Double = sqrt((x2 - x1).pow(2) + (y2 - y1).pow(2))
 
 /**
  * Простая
