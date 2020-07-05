@@ -105,7 +105,12 @@ fun circleInside(
  */
 fun brickPasses(a: Int, b: Int, c: Int, r: Int, s: Int): Boolean {
     return when {
-        (a <= r || b <= r || c <= r) && (a <= s || b <= s || c <= s) -> true
+        a <= r && b <= r && (a <= s || b <= s) -> true
+        a <= r && c <= r && (a <= s || c <= s) -> true
+        b <= r && c <= r && (b <= s || c <= s) -> true
+        a <= s && b <= s && (a <= r || b <= r) -> true
+        a <= s && c <= s && (a <= r || c <= r) -> true
+        b <= s && c <= s && (b <= r || c <= r) -> true
         else -> false
     }
 }
